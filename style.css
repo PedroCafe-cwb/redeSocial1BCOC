@@ -158,11 +158,11 @@ body {
 }
 
 .likes {
-  color: #e8ebef;
+  color: lab(53.23% 80.11 67.22)% 0%);
 }
 
 .likes strong {
-  color: #e9eef6;
+  color: #0d0d0e;
 }
 
 .nav-bar {
