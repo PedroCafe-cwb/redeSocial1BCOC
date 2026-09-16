@@ -5,11 +5,21 @@ document.addEventListener("DOMContentLoaded", () => {
     const likesTextCount = document.getElementById("likesTextCount");
     const postMedia = document.querySelector(".post-media");
     const bookmarkBtn = document.getElementById("bookmarkBtn");
+    
+    // Elementos de Comentários e Republicação
+    const commentInput = document.getElementById("commentInput");
+    const postCommentBtn = document.getElementById("postCommentBtn");
+    const commentsSection = document.getElementById("commentsSection");
+    
+    // O 3º botão na barra de ações (Republicar/Compartilhar)
+    const repostBtn = document.querySelectorAll(".left-actions .action-btn")[2];
 
-    let baseLikes = 67mil;
+    let baseLikes = 67000;
     let isLiked = false;
+    let repostCount = 24;
+    let isReposted = false;
 
-    // Formatação de números (ex: 1200 -> 1.2K)
+    // Formatação de números (ex: 67000 -> 67.0K)
     function formatLikes(num) {
         if (num >= 1000) {
             return (num / 1000).toFixed(1) + "K";
@@ -87,6 +97,56 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Inicializa o contador zerado
+    // Funcionalidade: Comentar
+    function addComment() {
+        const text = commentInput.value.trim();
+        if (text === "") return;
+
+        const commentDiv = document.createElement("div");
+        commentDiv.classList.add("comment-item");
+        commentDiv.innerHTML = `<strong>voce_usuario</strong> ${text}`;
+        
+        commentsSection.appendChild(commentDiv);
+        commentInput.value = "";
+        commentsSection.scrollTop = commentsSection.scrollHeight;
+    }
+
+    if (postCommentBtn) {
+        postCommentBtn.addEventListener("click", addComment);
+    }
+
+    if (commentInput) {
+        commentInput.addEventListener("keypress", (e) => {
+            if (e.key === "Enter") {
+                addComment();
+            }
+        });
+    }
+
+    // Funcionalidade: Republicar (Compartilhar)
+    if (repostBtn) {
+        repostBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            isReposted = !isReposted;
+            
+            if (isReposted) {
+                repostCount++;
+                repostBtn.classList.add("reposted");
+            } else {
+                repostCount = Math.max(0, repostCount - 1);
+                repostBtn.classList.remove("reposted");
+            }
+
+            const svgContent = repostBtn.querySelector("svg").outerHTML;
+            repostBtn.innerHTML = svgContent + " " + repostCount;
+
+            const repostSvg = repostBtn.querySelector("svg");
+            if (repostSvg) {
+                triggerAnimation(repostSvg);
+            }
+        });
+    }
+
+    // Inicializa o contador de curtidas
     updateLikesDisplay();
 });

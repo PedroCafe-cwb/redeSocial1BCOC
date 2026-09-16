@@ -151,18 +151,83 @@ body {
   stroke: #ffffff;
 }
 
+/* Classes de estilo para interações */
+.action-btn.reposted svg {
+  stroke: #22c55e;
+  fill: #22c55e;
+}
+
 .post-details {
-  padding: 0 16px 12px 16px;
+  padding: 0 16px 8px 16px;
   font-size: 13px;
   color: #ffffff;
 }
 
 .likes {
-  color: lab(53.23% 80.11 67.22)% 0%);
+  color: #a8a8a8;
 }
 
 .likes strong {
   color: #fdfdff;
+}
+
+/* Seção de Comentários */
+.comments-section {
+  padding: 0 16px 8px 16px;
+  font-size: 13px;
+  color: #ffffff;
+  max-height: 100px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.comment-item {
+  word-break: break-word;
+}
+
+.comment-item strong {
+  color: #fdfdff;
+  margin-right: 6px;
+}
+
+/* Caixa de Input de Comentário */
+.comment-input-container {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px 12px 16px;
+  border-top: 1px solid #222;
+  gap: 10px;
+}
+
+.comment-input-container input {
+  flex: 1;
+  background: #1e1e1e;
+  border: 1px solid #333;
+  border-radius: 20px;
+  padding: 8px 14px;
+  color: #ffffff;
+  font-size: 13px;
+  outline: none;
+}
+
+.comment-input-container input::placeholder {
+  color: #777;
+}
+
+.comment-input-container button {
+  background: none;
+  border: none;
+  color: #0095f6;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.comment-input-container button:hover {
+  opacity: 0.8;
 }
 
 .nav-bar {
