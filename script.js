@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const postMedia = document.querySelector(".post-media");
     const bookmarkBtn = document.getElementById("bookmarkBtn");
 
-    let baseLikes = 1M;
+    let baseLikes = 67mil;
     let isLiked = false;
 
     // Formatação de números (ex: 1200 -> 1.2K)
